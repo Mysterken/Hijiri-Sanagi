@@ -39,8 +39,8 @@ module.exports = {
 			let lessonsChar = [];
 			let reviewsChar = [];
 
-			for (let l of lessons) lessonsChar.push(l.data?characters : "?");
-			for (let r of arr) reviewsChar.push(r.data?characters : "?")
+			for (let l of lessons) lessonsChar.push(l.data?.characters || "?");
+			for (let r of arr) reviewsChar.push(r.data?.characters || "?");
 
 			let lessonsField = lessonsChar.length?("`" + lessonsChar.join("` `")) + "`" : 'None';
 			let reviewsField = reviewsChar.length?("`" + reviewsChar.join("` `")) + "`" : 'None';
