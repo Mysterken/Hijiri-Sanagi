@@ -41,9 +41,12 @@ hijiriDB.connect(err => {
         console.log('Exchange rates fetching complete!')
         updateDB.findOneAndUpdate(
             { collection: 'exchange_rate' },
-            { $set: { time: timestamp } },
+            { $currentDate: { time: true } },
             { upsert: true })
+        .then(() => hijiriDB.close())
     })
-    .catch(err => console.error(err))
-    .finally(()=>(hijiriDB.close()))
+    .catch(err => {
+        console.error(err);
+        hijiriDB.close()
+    })
 })
