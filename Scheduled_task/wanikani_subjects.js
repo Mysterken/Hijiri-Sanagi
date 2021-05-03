@@ -13,7 +13,6 @@ hijiriDB.connect(err => {
     const apiToken = process.env.wanikaniToken;
     let path = 'subjects/';
     var subjectsPromiseArr = [];
-    let timestamp = new Date(Date.now());
     let parameter = '';
     let i = 1;
 
@@ -34,7 +33,7 @@ hijiriDB.connect(err => {
 
     return updateDB.findOneAndUpdate(
         { collection: 'subjects' },
-        { $set: { time: timestamp } },
+        { $currentDate: { time: true } },
         { upsert: true })
     .then(doc => {
 
@@ -46,11 +45,11 @@ hijiriDB.connect(err => {
             
             var subject = responseBody;
 
-            if (subject.previous_url) {
+            if (subject.pages.next_url) {
                 do {
 
                     console.log(`Fetching page ${i+1}`)
-                    path = 'subjects?page_after_id='+(i*subject.pages.per_page).toString();
+                    path = 'subjects?page_after_id='+(i*subject.pages.per_page);
         
                     subjectsPromiseArr.push(new Promise((resolve, reject) => {
                         fetch(apiEndpoint(path))
@@ -92,7 +91,6 @@ hijiriDB.connect(err => {
                             { upsert: true, returnOriginal: true }, (err, res) => {
                             if (err) return reject(err)
                             else if (!res.value) sInserted++; 
-                            else if (res.value === {})
                             sCount++;
                             resolve() 
                         })
