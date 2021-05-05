@@ -10,7 +10,9 @@ Multiple API are used to provide data:
 
 - [Wanikani](https://www.wanikani.com/) for Wanikani related commands.
 
-### Screenshots
+- [Jikan](https://jikan.moe/) for MyAnimeList.
+
+## Screenshots
 
 ![VN command screenshot](https://i.imgur.com/4NgtxSR.png) ![https://i.imgur.com/ucKS9md.png](https://i.imgur.com/ucKS9md.png)
 
@@ -73,3 +75,9 @@ Multiple API are used to provide data:
 | **vn**         | Display information on a visual novel.              |
 | **vnchar**     | Display information about a visual novel character. |
 | **vnuserlist** | Display the visual novel list of a user.            |  
+
+## MAL
+
+| Command name   | Description                          |
+| -------------- |--------------------------------------|
+| **maluser**    | Display a user's MAL abridged stats. |
